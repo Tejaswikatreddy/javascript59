@@ -1,18 +1,21 @@
-var readline=require('readline');
+/*var readline=require('readline');
 var utility=require('../Utility/utility.js')
 
 
 var read=readline.createInterface({
     input:process.stdin,
     output:process.stdout
-});
+});*/
+//'use strict';
+//var utility=require('../Utility/utility.js');
 
-
+const args=require('yargs').argv;
 function table()
 {
-    read.question("enter n value", function(userinput){
-        utility.power(userinput);
-        })
-    }
+   
+       n=args.number;
+        //utility.power(n);
+   
+}
 
-table()
+table();
