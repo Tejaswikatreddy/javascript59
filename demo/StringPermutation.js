@@ -10,13 +10,14 @@ var read=readline.createInterface({
 
 function Permutation()
 {
-    read.question("enter the string", function(userinput){
-        utility.  StringPermutation(userinput,0,userinput.length);
-  
+    read.question("enter the string", function(string){
+        var strArray=string.split('');
+        utility.  StringPermutation(strArray,0,strArray.length-1);
+        read.close();
         
         });
     }
-    // read.close();  
+   
 
 Permutation();
 //swap();
