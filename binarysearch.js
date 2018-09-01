@@ -4,7 +4,7 @@ var utility = require('../Utility/algUtility.js')
 
 function binarysearch() {
     var arr = new Array();
-    var a=[];
+    var a = [];
     var flag = true;
     var len = readlineSync.question("enter the length of the array ");
     if (isNaN(len) == false) {
@@ -19,24 +19,31 @@ function binarysearch() {
         }
 
         if (flag == true) {
-            for(var i=0;i<len;i++)
-            {
+            for (var i = 0; i < len; i++) {
                 a.push(parseInt(arr[i]))
             }
+            var start = utility.getCurrentTime();
             var index = utility.binarynum(a, 0, len - 1, parseInt(key));
-            console.log(index);
+            var endtime = utility.getCurrentTime();
+            var result = utility.elapsedTime(start, endtime)
+
         }
         else {
-            var index = utility.binaryString(arr.toString(), 0, len - 1, key);
-            //index+1;
+            var start = utility.getCurrentTime();
+            var index = utility.binaryString(arr, key);
+            var endtime = utility.getCurrentTime();
+            var result = utility.elapsedTime(start, endtime)
+
         }
 
 
         if (index != -1) {
             console.log("Index of the key is ", index)
+            console.log("Time taken: ", result)
         }
         else {
             console.log("element not found")
+            console.log("Time taken: ", result)
         }
     }
     else {
