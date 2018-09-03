@@ -72,7 +72,7 @@ module.exports = {
                 anarr[k] = Math.floor(anarr[k] / 10);
             }
             if (n === sum) {
-                console.log("palindromes are ", n)
+                console.log("palindromes are ", n);
             }
         }
 
@@ -80,8 +80,8 @@ module.exports = {
     binarynum: function (arr, first, last, key) {
         var mid;
         arr.sort();
-        console.log(arr)
-        console.log(key)
+        //console.log("Number function")
+        //console.log(key)
         if (last >= first) {
             mid = parseInt((first + last) / 2);
             console.log(mid)
@@ -112,75 +112,119 @@ module.exports = {
         return resultTime;
     },
     insertion: function (arr, len) {
-        var val, index;
-        for (i = 1; i <= len - 1; i++) {
-            val = arr[i];
-            index = i;
-            while (index > 0 && arr[index - 1] > val) {
-                arr[index] = arr[index - 1];
-                index--;
-            }
-            arr[index] = val;
+        var val, index, flag = true;
+        for (var i = 0; i < len; i++) {
+            if (isNaN(arr[i]))
+                flag = false;
         }
-        console.log("sorted array is ", arr)
-    },
-    bubble: function (arr, n) {
-        for (var k = 0; k <= n - 1; k++) {
-            for (var i = 0; i <= n - 2; i++) {
-                if (arr[i] > arr[i + 1]) {
-                    temp = arr[i];
-                    arr[i] = arr[i + 1]
-                    arr[i + 1] = temp;
+        if (flag == false) {
+            for (i = 1; i <= len - 1; i++) {
+                val = arr[i];
+                index = i;
+                while (index > 0 && arr[index - 1] > val) {
+                    arr[index] = arr[index - 1];
+                    index--;
                 }
+                arr[index] = val;
             }
+            console.log("sorted array is ", arr)
         }
-        console.log("Sorted array is ", arr)
+        else {
+            for (i = 1; i <= len - 1; i++) {
+                val = arr[i];
+                index = i;
+                while (index > 0 && parseInt(arr[index - 1]) > parseInt(val)) {
+                    arr[index] = arr[index - 1];
+                    index--;
+                }
+                arr[index] = val;
+            }
+            console.log("sorted array is ", arr)
+        }
 
     },
-    merge: function (a, b, c) {
-        var c = new Array();
-        var i = 0; j = 0; k = 0;
-        while (i < a.length && j < b.length) {
-            if (a[i] < b[j]) {
-                c[k] = a[i];
-                k++;
+    bubble: function (arr, n) {
+        var flag = true;
+        for (var i = 0; i < arr.length; i++) {
+            if (isNaN(arr[i]))
+                flag = false;
+        }
+        if (flag == true) {
+            for (var k = 0; k <= n - 1; k++) {
+                for (var i = 0; i <= n - 2; i++) {
+                    if (parseInt(arr[i]) > parseInt(arr[i + 1])) {
+                        temp = arr[i];
+                        arr[i] = arr[i + 1]
+                        arr[i + 1] = temp;
+                    }
+                }
+            }
+            console.log("Sorted array is ", arr)
+        }
+        else {
+            for (var k = 0; k <= n - 1; k++) {
+                for (var i = 0; i <= n - 2; i++) {
+                    if (arr[i] > arr[i + 1]) {
+                        temp = arr[i];
+                        arr[i] = arr[i + 1]
+                        arr[i + 1] = temp;
+                    }
+                }
+            }
+            console.log("Sorted array is ", arr)
+        }
+
+
+    },
+    merge: function (a, l, m, r) {
+        console.log("merge function")
+        var n1 = parseInt(m - l + 1);
+        console.log("n1" + n1);
+        var n2 = parseInt(r - m);
+        var L = new Array(n1);
+        var R = new Array(n2);
+        for (var p = 0; p < n1; p++) {
+            L[p] = a[l + p];
+        }
+        for (var q = 0; q < n2; q++) {
+            R[q] = arr[m + 1 + q];
+        }
+        var i = 0, j = 0;
+        var k = 1;
+        while (parseInt(i) < parseInt(n1) && parseInt(j) < parseInt(n2)) {
+            console.log("while loopfrst")
+            if (l[i] <= R[j]) {
+                a[k] = L[i];
                 i++;
             }
             else {
-                c.push(b[j]);
+                a[k] = R[j];
                 j++;
-                k++;
-
             }
-        }
-        while (i < a.length) {
-            c.push(a[i]);
             k++;
-            i++;
         }
-        while (j < b.length) {
-            c.push(b[j]);
-            k++; j++;
+        while (i < n2) {
+            console.log("while loop secnd")
+            arr[k] = L[i];
+            i++; j++;
         }
-        console.log(c);
+        while (j < n2) {
+            console.log("while loop secnd")
+            a[k] = R[j];
+            j++; k++;
+
+        }
+        console.log("sorted array is " + a);
 
     },
-    sort: function (arr) {
-        if (arr.length == 1) return;
-        var m = arr.length / 2;
-        var l = new Array(m);
-        var r = new Array(arr.length - m)
-
-        for (var i = 0; i < l.length; i++) {
-            l[i] = arr[i];
-
-            for (var j = 0; j < r.length; j++) {
-                r[j] = arr[i];
-            }
-
-            this.sort(l)
-            this.sort(r)
-            this.merge(l, r, arr)
+    sort: function (arr, r, l) {
+        console.log("sort function");
+        if (r < l) {
+            var m = Math.floor((l + r) / 2);
+            console.log(m + "m value");
+            this.sort(arr, l, m);
+            this.sort(arr, m + 1, r);
+            this.merge(arr, l, m, r);
         }
     },
     calendar: function (m, d, y) {
@@ -208,22 +252,80 @@ module.exports = {
 
         // console.log(pow);
         // var payment = (p * r) / pow;
-         var temp=1+(i/100)
-         var x=Math.pow(temp,y)
-         var payments=p*(x-1)
-         console.log("Total payments is ", payments)
+        var temp = 1 + (i / 100)
+        var x = Math.pow(temp, y)
+        var payments = p * (x - 1)
+        console.log("Total payments is ", payments)
     },
-    sqrt:function(c)
-    {
-        var t=c;
-        var epsilon=1e-15
-        while(Math.abs(t-(c/t)>epsilon))
-            {
-                 t=((c/t)+t)/2;
+    sqrt: function (c) {
+        var t = c;
+        var epsilon = 1e-15
+        while (Math.abs(t - (c / t) > epsilon)) {
+            t = ((c / t) + t) / 2;
+        }
+
+        return t;
+
+    },
+    toBinary: function (dec) {
+        var a = 0;
+        var res = " ";
+        while (dec > 0) {
+            a = Math.floor(dec % 2);
+            res = res + "" + a;
+            dec = Math.floor(dec / 2);
+        }
+        var resarr = (res.split('')).reverse().join('');
+        console.log("Binary value of given decimal is " + resarr);
+        return resarr;
+    },
+    Binary: function (bin) {
+        var str = "" + bin;
+        var arr = (str.split('')).reverse();
+        var dec = 0;
+        for (var i = 0; i < arr.length; i++) {
+            dec += parseInt(arr[i] * (Math.pow(2, i)));
+        }
+        console.log("decimal value of the given number is " + dec);
+        return dec;
+
+    },
+    nibble: function (bin) {
+        var str = "" + bin;
+        var mid = 0, str1 = "", arr = [], arr2 = [], arr1 = [], res = [];
+        var flag = false;
+        var final = "";
+        while (flag == false) {
+            if (str.length == 9) {
+
+                mid = Math.floor(str.length / 2);
+                console.log(mid + "mid value");
+                var str1=str.slice(0,mid);
+                var str2=str.slice(mid,str.length)
+                var res=(str2.trim())+str1;
+                flag=true;
+                console.log("New binary number is" +res);
+                return res;
             }
-       
-       return t;
-            
-    }
+            else {
+                while (str.length < 9) {
+                    str = '0' + str;
+                }
+            }
+        }
+        
+    },
+    checkPow:function(n)
+        {
+            var pow=0;
+            while(n>1)
+                {
+                    if(n%2==0)
+                        pow++;
+                    n=n/2;
+                }
+                return pow;
+        }
+
 
 }
