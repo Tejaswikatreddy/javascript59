@@ -1,4 +1,8 @@
+var notes = 0;
 module.exports = {
+/**
+ * 
+ */
     anagram: function (str1, str2) {
         var count = 0;
         if (typeof str1 == undefined || typeof str2 == undefined) {
@@ -6,10 +10,15 @@ module.exports = {
             return;
         }
         if (isNaN(str1) && isNaN(str2) === true) {
-            var s1 = (str1.sort()).join;
-            var s2 = (str2.sort()).join;
-            if (s1 === s2) {
+             
+             var s1 = str1.sort();
+             var s2 = str2.sort();
+
+            if (s1.join() === s2.join()) {
                 console.log("It is a anagram")
+            }
+            else{
+                console.log("It is not a anagram")
             }
 
         }
@@ -80,11 +89,8 @@ module.exports = {
     binarynum: function (arr, first, last, key) {
         var mid;
         arr.sort();
-        //console.log("Number function")
-        //console.log(key)
         if (last >= first) {
             mid = parseInt((first + last) / 2);
-            console.log(mid)
             if (parseInt(arr[mid]) === parseInt(key))
                 return mid;
             if (parseInt(arr[mid]) > parseInt(key))
@@ -96,7 +102,7 @@ module.exports = {
         return -1;
     },
     binaryString: function (arr, key) {
-        console.log(arr);
+        arr.sort();
         var n = arr.indexOf(key);
         return (parseInt(n));
 
@@ -176,64 +182,78 @@ module.exports = {
 
 
     },
-    merge: function (a, l, m, r) {
-        console.log("merge function")
-        var n1 = parseInt(m - l + 1);
-        console.log("n1" + n1);
-        var n2 = parseInt(r - m);
-        var L = new Array(n1);
-        var R = new Array(n2);
-        for (var p = 0; p < n1; p++) {
-            L[p] = a[l + p];
-        }
-        for (var q = 0; q < n2; q++) {
-            R[q] = arr[m + 1 + q];
-        }
-        var i = 0, j = 0;
-        var k = 1;
-        while (parseInt(i) < parseInt(n1) && parseInt(j) < parseInt(n2)) {
-            console.log("while loopfrst")
-            if (l[i] <= R[j]) {
-                a[k] = L[i];
+    merge: function (a1, a2, a) {
+        var i = 0; j = 0; k = 0;
+        if(isNaN(a1[0])){
+            while (i < a1.length && j < a2.length) {
+            
+            if (a1[i] < a2[j]) {
+                a[k] = a1[i];
                 i++;
+                k++;
             }
             else {
-                a[k] = R[j];
-                j++;
+                a[k] = a2[j];
+                k++; j++;
             }
-            k++;
         }
-        while (i < n2) {
-            console.log("while loop secnd")
-            arr[k] = L[i];
-            i++; j++;
+        while (i < a1.length) {
+            a[k] = a1[i];
+            k++; i++;
         }
-        while (j < n2) {
-            console.log("while loop secnd")
-            a[k] = R[j];
-            j++; k++;
-
+        while (j < a2.length) {
+            a[k] = a2[j];
+            k++; j++;
         }
-        console.log("sorted array is " + a);
-
+        }
+    else{
+        while (i < a1.length && j < a2.length) {
+            
+            if (parseInt(a1[i]) < parseInt(a2[j])) {
+                a[k] = a1[i];
+                i++;
+                k++;
+            }
+            else {
+                a[k] = a2[j];
+                k++; j++;
+            }
+        }
+        while (i < a1.length) {
+            a[k] = a1[i];
+            k++; i++;
+        }
+        while (j < a2.length) {
+            a[k] = a2[j];
+            k++; j++;
+        }
+    }
     },
-    sort: function (arr, r, l) {
-        console.log("sort function");
-        if (r < l) {
-            var m = Math.floor((l + r) / 2);
-            console.log(m + "m value");
-            this.sort(arr, l, m);
-            this.sort(arr, m + 1, r);
-            this.merge(arr, l, m, r);
+    mergesort: function (arr) {
+        if (arr.length == 1) { return; }
+        var m = Math.floor(arr.length / 2);
+        var arr1 = new Array(m);
+        var arr2 = new Array(arr.length - m)
+        var i = 0;
+        for (i = 0; i < arr1.length; i++) {
+            arr1[i] = arr[i];
         }
+        for (var j = 0; j < arr2.length; j++ , i++) {
+            arr2[j] = arr[i];
+        }
+        this.mergesort(arr1);
+        this.mergesort(arr2);
+        this.merge(arr1, arr2, arr);
+        return arr;
     },
     calendar: function (m, d, y) {
         var y0, m0, d0, x;
-        y0 = (y - ((14 - m) / 12));
-        x = y0 + ((y0 / 4) - (y0 / 100) + (y0 / 400));
-        m0 = m + (12 * x) * ((14 - m) / 12) - 2;
-        d0 = (d + x + ((31 * m0) / 12)) % 7
+        y0 = y-Math.round((14-m)/12)
+        x = y0+Math.round(y0/4)-Math.round(y0/100)+Math.round(y0/400)
+        m0 = m+Math.round(12*((14-m)/12)-2);
+        d0 = Math.round((d+x+(31*m0)/12)%7)
         return d0;
+                    
     },
     temperature: function (t, temptype) {
         if (temptype == 1) {
@@ -292,7 +312,7 @@ module.exports = {
     },
     nibble: function (bin) {
         var str = "" + bin;
-        var mid = 0, str1 = "", arr = [], arr2 = [], arr1 = [], res = [];
+        var mid = 0, str1 = "",  res = [];
         var flag = false;
         var final = "";
         while (flag == false) {
@@ -300,11 +320,11 @@ module.exports = {
 
                 mid = Math.floor(str.length / 2);
                 console.log(mid + "mid value");
-                var str1=str.slice(0,mid);
-                var str2=str.slice(mid,str.length)
-                var res=(str2.trim())+str1;
-                flag=true;
-                console.log("New binary number is" +res);
+                var str1 = str.slice(0, mid);
+                var str2 = str.slice(mid, str.length)
+                var res = (str2.trim()) + str1;
+                flag = true;
+                console.log("New binary number is" + res);
                 return res;
             }
             else {
@@ -313,19 +333,128 @@ module.exports = {
                 }
             }
         }
-        
+
     },
-    checkPow:function(n)
-        {
-            var pow=0;
-            while(n>1)
-                {
-                    if(n%2==0)
-                        pow++;
-                    n=n/2;
-                }
-                return pow;
+    checkPow: function (n) {
+        var pow = 0;
+        while (n > 1) {
+            if (n % 2 == 0)
+                pow++;
+            else
+                return -1;
+            n = n / 2;
         }
+        return pow;
+    },
+    vending: function (amnt) {
+
+        if (amnt == 0) return notes;
+        if (amnt >= 1000) {
+            var Tnotes = Math.floor(amnt / 1000)
+            notes += Tnotes;
+            console.log("No of 1000 rupee notes are " + Tnotes);
+            if (amnt % 1000 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 1000));
+        }
+        else if (amnt >= 500) {
+            var fnotes = Math.floor(amnt / 500)
+            notes += fnotes;
+            console.log("No of 500 rupee notes are " + fnotes);
+            if (amnt % 500 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 500));
+        }
+        else if (amnt >= 100) {
+            var hnotes = Math.floor(amnt / 100)
+            notes += hnotes;
+            console.log("No of 100 rupee notes are " + hnotes);
+            if (amnt % 100 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 100));
+        }
+        else if (amnt >= 50) {
+            var finotes = Math.floor(amnt / 50)
+            notes += finotes;
+            console.log("No of 50 rupee notes are " + finotes);
+            if (amnt % 50 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 50));
+        }
+        else if (amnt >= 10) {
+            var tenotes = Math.floor(amnt / 10);
+            notes += tenotes;
+            console.log("No of 10 rupee notes are " + tenotes);
+            if (amnt % 10 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 10));
+        }
+        else if (amnt >= 5) {
+            var fivenotes = Math.floor(amnt / 5);
+            notes += fivenotes;
+            console.log("No of 5 rupee notes are " + fivenotes);
+            if (amnt % 5 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 5));
+        }
+        else if (amnt >= 2) {
+            var twonotes = Math.floor(amnt / 2);
+            notes += twonotes;
+            console.log("No of 2 rupee notes are " + twonotes);
+            if (amnt % 2 == 0) {
+                console.log(notes + "minimum no of notes")
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 2));
+        }
+        else if (amnt >= 1) {
+            var onenotes = Math.floor(amnt / 1);
+            notes += onenotes;
+            console.log("No of 1 rupee notes are " + onenotes);
+            if (amnt % 1 == 0) {
+                console.log(notes + "minimum no of notes");
+                return notes;
+            }
+            else
+                this.vending(Math.floor(amnt % 1));
+        }
+    },
+    guessnumber: function (low, high, readlineSync) {
+        mid = Math.floor((low + high) / 2);
+        console.log(`Is your number equal to ${(mid)},press 0 or if less,press 1 or if greater press 2`)
+        var temp = readlineSync.question('enter option!!')
+        if (temp == 0) {
+            console.log("your number is " + mid)
+        }
+        else if (temp == 1) {
+            this.guessnumber(0, mid - 1, readlineSync);
+        }
+        else if (temp == 2) {
+            this.guessnumber(mid + 1, high, readlineSync);
+        }
+        else {
+            console.log("Invalid option")
+        }
+    },
 
 
 }
