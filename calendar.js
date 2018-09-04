@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+/******************************************************************************
+ *  Execution       :   1. default node         cmd> node calendar.js 
+ * 
+ *  Purpose         : Determines and prints the day of the given date
+ *  
+ *  @description    
+ * 
+ *  @file           : calendar.js
+ *  @overview       : calendar module to determine the day of the given date
+ *  @author         : Dhana Tejaswi <tejaswikatreddy10@gmail.com>
+ *  @version        : 8.2.1
+ *  @since          : 3-09-2018
+ *
+ ******************************************************************************/
+=======
+>>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
 var readlineSync = require('readline-sync');
 var utility = require('../Utility/algUtility.js')
 function date() {
