@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node displayPrimes.js 
  * 
@@ -13,26 +12,32 @@
  *  @since          : 31-08-2018
  *
  ******************************************************************************/
-=======
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
-var utility=require('../Utility/algUtility.js')
-var readline=require('readline');
-var read=readline.createInterface({
-    input:process.stdin,
-    output:process.stdout
+var utility = require('../Utility/algUtility.js')
+var readline = require('readline');
+var read = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
 });
 
-function  primes()
-    {
-<<<<<<< HEAD
-        read.question("enter the range", function(n){ //given range as input
-        var arr=utility.DisplayPrimes(n);   //invoke display primes method
-=======
-        read.question("enter the range", function(n){
-        var arr=utility.DisplayPrimes(n);
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
-        read.close();
+function primes() {
+    read.question("enter the low range", function (low) { //given range as input
+        read.question("enter the high range", function (high) {
+            if (isNaN(high) || isNaN(low)) {
+                console.log("enter number values..try again")
+                primes();
+            }
+            else {
+                if (low > high) {
+                    console.log("enter hogh velue greater than low")
+                    primes();
+                }
+                else {
+                    var arr = utility.DisplayPrimes(low, high);   //invoke display primes method
+                    read.close();
+                }
+            }
         });
-    }
-    
-        primes();
+    });
+}
+
+primes();

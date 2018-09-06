@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node anaAndPal.js 
  * 
@@ -15,10 +14,6 @@
  *
  ******************************************************************************/
 var utility=require('../Utility/algUtility.js')
-=======
-
-   var utility=require('../Utility/algUtility.js')
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
 var readline=require('readline');
 var read=readline.createInterface({
     input:process.stdin,
@@ -27,14 +22,24 @@ var read=readline.createInterface({
 
 function  getansAndPals()
     {
-<<<<<<< HEAD
-        read.question("enter the range", function(n){   //taking range as input
-        var arr=utility.anaAndPal(n);                   //invoke anaAndPal() method
-=======
-        read.question("enter the range", function(n){
-        var arr=utility.anaAndPal(n);
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
+        read.question("enter the low range", function(low){//taking range as input
+            read.question("enter the high range", function(high){
+              if (isNaN(high) || isNaN(low)) {
+                console.log("enter number values..try again")
+                getansAndPals();
+            }
+            else{
+                if(low>high){
+                    console.log("enter low value less than high");
+                    getansAndPals();
+                }
+                else{
+        var arr=utility.anaAndPal(low,high);                   //invoke anaAndPal() method
         read.close();
+                }
+            }
+        });
+
         });
     }
     

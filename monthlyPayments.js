@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node monthlyPayments.js 
  * 
@@ -14,21 +13,19 @@
  *  @since          : 3-09-2018
  *
  ******************************************************************************/
-=======
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
 var readlineSync = require('readline-sync');
 var utility = require('../Utility/algUtility.js')
 function intrest()
 {
-<<<<<<< HEAD
     var p=readlineSync.question("enter principal amount")//enter the principal amount
     var i=readlineSync.question("enter the intrest percentage")//enter the rate of the interest
     var y=readlineSync.question("enter years")//enter the duration
-=======
-    var p=readlineSync.question("enter principal amount")
-    var i=readlineSync.question("enter the intrest percentage")
-    var y=readlineSync.question("enter years")
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
+    if(isNaN(p) || isNaN(m) || isNaN(y)){
+        console.log("enter number values,try again..")
+        intrest();
+    }
+    else{
     utility.monthlyPayments(p,i,y);
+    }
 }
 intrest();

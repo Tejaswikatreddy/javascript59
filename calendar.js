@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node calendar.js 
  * 
@@ -13,15 +12,14 @@
  *  @since          : 3-09-2018
  *
  ******************************************************************************/
-=======
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
 var readlineSync = require('readline-sync');
 var utility = require('../Utility/algUtility.js')
 function date() {
     var m = readlineSync.question("enter month of the date")
     var d = readlineSync.question("enter date ")
     var y = readlineSync.question("enter year of the date")
-    var day = utility.calendar(m, d, y);
+    if()
+    var day = utility.calendar(m,d, y);
     switch (day) {
         case 0: console.log("sunday");
             break;

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node sqrt.js 
  * 
@@ -13,14 +12,13 @@
  *  @since          : 3-09-2018
  *
  ******************************************************************************/var readlineSync = require('readline-sync');
-=======
-var readlineSync = require('readline-sync');
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
 var utility = require('../Utility/algUtility.js')
-function dosqrt()
-{
-    var c=readlineSync.question("enter c value")
-    res= utility.sqrt(c);
-     console.log("Square root of given number is ",res)
+function dosqrt() {
+    var c = readlineSync.question("enter c value")
+    if (isNaN(c)) console.log("Invalid input")
+    else {
+        res = utility.sqrt(c);
+        console.log("Square root of given number is ", res)
+    }
 }
-    dosqrt();
+dosqrt();

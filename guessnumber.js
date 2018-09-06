@@ -14,9 +14,15 @@
  ******************************************************************************/
 var readlineSync = require('readline-sync');
 var utility = require('../Utility/algUtility.js');
-function caluclate()
-{
-     var value=readlineSync.question("enter any value");//enter the range
-     utility.guessnumber(0,value-1,readlineSync);
+function caluclate() {
+    var value = readlineSync.question("enter any value");//enter the range
+    if (isNaN(value)) {
+        console.log("enter number value,try again...")
+        caluclate();
+
+    }
+    else {
+        utility.guessnumber(0, value - 1, readlineSync);
+    }
 }
-    caluclate();
+caluclate();

@@ -17,10 +17,16 @@ var utility = require('../Utility/algUtility.js');
 function caluclate()
 {
      var amnt=readlineSync.question("enter amount");//enter the amount
+     if(isNaN(amnt)){
+         console.log("enter number value,try  again..")
+         caluclate()
+     }
+        else{
      var notes=utility.vending(amnt);  //invokes vending method tthat returns the minimum number of notes
      if(notes==0)
         {
             console.log("amount entered is 0 so the noof notes is 0")
         }
+}
 }
 caluclate();

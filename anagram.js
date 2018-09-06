@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node anagram.js 
  * 
@@ -13,38 +12,24 @@
  *  @since          : 31-08-2018
  *
  ******************************************************************************/
-var readline=require('readline');
-var utility=require('../Utility/algUtility.js')
-=======
-var readline=require('readline');
+var readlineSync = require('readline-sync');
 var utility=require('../Utility/algUtility.js')
 
 
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
-var read=readline.createInterface({
-    input:process.stdin,
-    output:process.stdout
-});
-
-<<<<<<< HEAD
 function isAnagram()
 {
-    read.question("enter String1", function(str1){  //enter two strings
-        read.question("enter String2",function(str2){
-
+   var str1= readlineSync.question("enter String1 ")  //enter two strings
+      
+       var str2= readlineSync.question("enter String2 ")
+     
+    if(isNaN(str1) && isNaN(str2))
             utility.anagram(str1.split(''),str2.split('')) //invoke anagram method
-=======
+        else{
+            console.log("enter strings...try again")
+            isAnagram();
+        }
+    
 
-function isAnagram()
-{
-    read.question("enter String1", function(str1){
-        read.question("enter String 2",function(str2){
-
-            utility.anagram(str1.split(''),str2.split(''))
->>>>>>> 744d0ba2634b7a201bd15890a1c04a9e9eed397a
-            read.close();
-        })
-     })
-    }
+}
 
 isAnagram()

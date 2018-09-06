@@ -15,23 +15,33 @@
 var readlineSync = require('readline-sync');
 var fs=require('fs');
 var utility = require('../Utility/algUtility.js');
-var filename = "file.txt";
+//var filename = "file.txt";
 function binary()
 {
-    
-     var list=fs.readFileSync(filename, "utf8");//import list from the text file
-      var arr=list.split(' ');
+    try{
+        var list=fs.readFileSync('file.txt');//import list from the text file
+     }
+     catch(exception){
+        console.log("File not found...")
+     }
+      var arr=list.toString().split(',');
         arr.sort();
         console.log(arr);
      var key=readlineSync.question("enter the key to search")
+     if(isNaN(key)){
      var index=utility.binaryString(arr,key);//invoke binarystring() method
           if(index==-1)
         {
-            console.log("elemnt not found")
+            console.log("element not found")
         }
         else
             {
-                console.log("element found at "+index)
+                console.log("element found  ")
             }
+     }
+        else{
+            console.log("enter string value to search..")
+            binary();
+        }
 }
         binary();

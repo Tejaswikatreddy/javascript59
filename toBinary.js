@@ -17,7 +17,13 @@ var utility = require('../Utility/algUtility.js')
 function convert()
 {
     var dec=readlineSync.question("enter decimal value") //take the decimal value that need to be converted
+    if(isNaN(dec)){
+        console.log("invalid input,try again...")
+        convert();
+    }
+    else{
     res= utility.toBinary(parseInt(dec));
      console.log("binary value of given number is ",res)
+}
 }
     convert();

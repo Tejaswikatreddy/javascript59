@@ -38,7 +38,6 @@ function binarysearch() {
                 if (isNaN(arr[i]))
                     strornum = false;
             }
-
             if (strornum== true) {
                 for (var i = 0; i < len; i++) {
                     a.push(parseInt(arr[i]))

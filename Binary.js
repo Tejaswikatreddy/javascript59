@@ -16,7 +16,12 @@ var readlineSync = require('readline-sync');
 var utility = require('../Utility/algUtility.js')
 function convert()
 {
-    var bin=readlineSync.question("enter decimal value") //take decimal value as input
+    var bin=readlineSync.question("enter binary value") //take decimal value as input
+    if(isNaN(bin)){
+        console.log("invalid input enter integers")
+        convert();
+}
+    else{
    var res= utility.toBinary(bin);                       //invoke tobinary() function
    var newbin=utility.nibble(res);                       //invoke nibble() function   
    var newdec=utility.Binary(newbin);                    //convert the new binary number to decimal
@@ -29,6 +34,6 @@ function convert()
     else{
         console.log(newdec+"is not a power of 2 value");
     }
-   
+    }
 }
     convert();
