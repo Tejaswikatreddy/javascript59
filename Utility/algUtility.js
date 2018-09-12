@@ -324,16 +324,46 @@ module.exports = {
      * @function calendar() takes date as input and gives the day of the date
      * @var {Number} m,d,y takes month date and year as arguments
      */
-    calendar: function (d, m, y) {
+    calendar: function (day, month, year) {
 
-        y0 = y - Math.round((14 - m) / 12);
-        x = (y0 + Math.round(y0 / 4) - Math.round(y0 / 100) + Math.round(y0 / 400));
-        m0 = m + (12 * x * (Math.round(14 - m) / 12)) - 2;
-        d0 = (d + x + Math.round((31 * m0) / 12)) % 7;
-
-        return d0;
+        aa = (Math.floor((14 - month) / 12));
+        aa = parseInt(aa);
+        
+        yy = year - aa;
+        
+        mm = ((month + (12 * aa)) - 2);
+        mm = parseInt(mm);
+        
+        dayofweek = ((day + yy + Math.floor(yy / 4) - Math.floor(yy / 100)     /**This is the formula for 
+                                                                            calculating day of week*/
+        + Math.floor(yy / 400) + Math.floor((31 * mm) / 12)) % 7);
+        
+        dayofweek = parseInt(dayofweek);
+        switch ((dayofweek)) {
+            case 0:
+                console.log("Sunday");
+                break;
+            case 1:
+                console.log("Monday");
+                break;
+            case 2:
+                console.log("Tuesday");
+                break;
+            case 3:
+                console.log("Wednesday");
+                break;
+            case 4:
+                console.log("Thursday");
+                break;
+            case 5:
+                console.log("Friday");
+                break;
+            case 6:
+                console.log("Saturday");
+        }
 
     },
+
     /**
      * @function temperature() converts the celsius from farenheit and viceversa
      * @var {Number} takes the temperature value to be converted
