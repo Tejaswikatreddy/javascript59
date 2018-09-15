@@ -1,5 +1,5 @@
 var obj = require('/home/bridgeit/tejaswi/javascript/OOP/class.js')
-var queue=require('/home/bridgeit/tejaswi/javascript/DataStructures/implementations/qUtility.js')
+var queue = require('/home/bridgeit/tejaswi/javascript/DataStructures/implementations/qUtility.js')
 class stock {
     constructor(name, total) {
         this.name = name;
@@ -62,25 +62,25 @@ module.exports = {
                 var repo_Num = readlineSync.question("enter the number of repositories you want to enter")
                 if (isNaN(repo_Num)) {
                     console.log("enter number value,try again..")
-                     var repo_Num = readlineSync.question("enter the number of repositories you want to enter")
+                    var repo_Num = readlineSync.question("enter the number of repositories you want to enter")
                 }
                 for (var i = 0; i < repo_Num; i++) {
                     var name = readlineSync.question("enter the name of the repository")
-                    if(isNaN(name)==false){
+                    if (isNaN(name) == false) {
                         console.log("enter string value,try again")
-                          var name = readlineSync.question("enter the name of the repository")
+                        var name = readlineSync.question("enter the name of the repository")
                     }
                     var price = readlineSync.question("enter the price of 1 share")
-                    if(isNaN(price)){
+                    if (isNaN(price)) {
                         console.log("enter number value,try again")
                         var price = readlineSync.question("enter the price of 1 share")
-                        
+
                     }
                     var number = readlineSync.question("enter the no of shares you want")
-                       if(isNaN(number)){
+                    if (isNaN(number)) {
                         console.log("enter number value,try again")
                         var price = readlineSync.question("enter the price of 1 share")
-                        
+
                     }
                     var in_Obj = new obj(name, price, number);
                     arr.push(in_Obj)
@@ -101,9 +101,9 @@ module.exports = {
                 break;
             case '2':
                 var del_name = readlineSync.question("enter the name of the stock you want to delete")
-                if(isNaN(del_name)==false){
+                if (isNaN(del_name) == false) {
                     console.log("enter the string value,try again....")
-                     var del_name = readlineSync.question("enter the name of the stock you want to delete")
+                    var del_name = readlineSync.question("enter the name of the stock you want to delete")
                 }
                 if (arr.length == 0) {
                     console.log("json file doesnot have any objects,it is not possible to delete")
@@ -114,10 +114,9 @@ module.exports = {
                         if ((arr[i].name).toLowerCase() == del_name.toLowerCase()) {
                             arr.splice(i, 1)
                             flag = true;
-
                             break;
                         }
-                        var total = (arr[i].price )* (arr[i].number);
+                        var total = (arr[i].price) * (arr[i].number);
                         var name = arr[i].name;
                         var total_Obj = new stock(name, total);
                         total_arr.push(total_Obj);
@@ -148,82 +147,70 @@ module.exports = {
         }
 
     },
-    deckOfCards:function(){
-        var arr=[];
-        for(var j=0;j<4;j++){
-            if(j==0){
-                a='cl';
-            }
-            if(j==1){
-                a='di';
-            }
-            if(j==2){
-                a='he';
-            }
-            if(j==3){
-                a='sp';
-            }
-            var card;
-            for(var k=1;k<=13;k++){
-               if(k==1 || k==11 || k==12 || k==13){
-                if(k==1){
-                    card="ace"
+    deckOfCards: function (arr) {
+        var twoDarray = [], p = 1,index=[], flag = true;
+        while (p <= 4) {
+            var player = [], i = 1;
+            while (i <= 9) {
+                var random_index = this.random(arr);
+                var card=arr[random_index];
+                if(index.length==0){
+                    index.push(random_index);
                 }
-                if(k==11){
-                    card="jack"
+                if (index.indexOf(random_index) == -1) {
+                    player.push(card);
+                     index.push(random_index);
+                    i++;
                 }
-                if(k==12){
-                    card="queen"
-                }
-                if(k==13){
-                    card="king"
-                }
-                arr.push(a+'-'+card);
-               }
-            else{
-                arr.push(a+'-'+k);
             }
-               
-            }
-            
-        }
-        // console.log(arr);
+                twoDarray.push(player)
+                p++;
        
-        var twoDarray=[];
-        for(var p=0;p<4;p++){
-            var player=[];
-        for(var i=0;i<9;i++){
-            
-            var card=this.random(arr);
-            player.push(card);
-        }
-        twoDarray.push(player);
-       
-    }
-    for(var i=0;i<twoDarray.length;i++){
-        var str=""
-        for(var j=0;j<(twoDarray[i]).length;j++){
-            str=str+"\t"+(twoDarray[i])[j];
-        }
-        console.log(str);
-    }
+
+         }
+    this.printtwoDarray(twoDarray)
     return twoDarray;
     },
-random:function(arr){
-    return arr[Math.floor(Math.random()*arr.length)];
-},
-cardsQueue:function(twoDarray){
-    var q_Obj=new queue();
-    for(var i=0;i<twoDarray.length;i++){
-        
+        printtwoDarray:function(twoDarray){
+        for (var i = 0; i < twoDarray.length; i++) {
+            var str = ""
+            for (var j = 0; j < (twoDarray[i]).length; j++) {
+                str = str + "\t" + (twoDarray[i])[j];
+            }
+            console.log(str);
+        }
+        return twoDarray;
+    },
+    random: function (arr) {
+        return Math.floor(Math.random() * arr.length);
+    },
+ 
+    sorting: function (twoDarray,arr) {
+        for (var i = 0 ; i < twoDarray.length ; i++) {
+            for(k=0;k<(twoDarray[i].length);k++){
+           for(var j=0 ; j<=((twoDarray[i]).length)-2 ; j++){
+                if(arr.indexOf(twoDarray[i][j])>arr.indexOf( twoDarray[i][j+1]))
+                    {
+                        var temp=twoDarray[i][j];
+                        twoDarray[i][j]=twoDarray[i][j+1]
+                        twoDarray[i][j+1]=temp;
+                    }
+           }
+            }
+        }
+        return twoDarray;
+    
+    },
+    cardQueue:function(arr){
+        var q_Obj=new queue();
+        for (var i = 0 ; i < arr.length ; i++) {
+            q_Obj.enqueue("player"+(i+1))
+            q_Obj.enqueue(arr[i]);
+            
     }
-},
-sorting:function(arr){
-    for(var i=0;i<arr.length;i++){
-        
+       var Str= q_Obj.printList();
+       console.log(Str);
     }
-}
-
 
 
 }
