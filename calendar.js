@@ -1,43 +1,37 @@
 /******************************************************************************
  *  Execution       :   1. default node         cmd> node calendar.js 
  * 
- *  Purpose         : Determines and prints the day of the given date
- *  
+ *  Purpose         : to print the calendar of the iven month and year
+ * 
  *  @description    
  * 
  *  @file           : calendar.js
- *  @overview       : calendar module to determine the day of the given date
+ *  @overview       : to print the calendar of the given month and year
  *  @author         : Dhana Tejaswi <tejaswikatreddy10@gmail.com>
  *  @version        : 8.2.1
- *  @since          : 3-09-2018
+ *  @since          : 11-09-2018
  *
  ******************************************************************************/
 var readlineSync = require('readline-sync');
-var utility = require('../Utility/algUtility.js')
-function date() {
-    var m = readlineSync.question("enter month of the date")
-    var d = readlineSync.question("enter date ")
-    var y = readlineSync.question("enter year of the date")
-    if()
-    var day = utility.calendar(m,d, y);
-    switch (day) {
-        case 0: console.log("sunday");
-            break;
-        case 1: console.log("Monday");
-            break;
-        case 2: console.log("Tuesday");
-            break;
-        case 3: console.log("Wednesday");
-            break;
-        case 4: console.log("Thursday");
-            break;
-        case 5: console.log("Friday");
-            break;
-        case 6: console.log("Saturday");
-            break;
-        default:console.log("Invalid date")
-
+var utility = require('/home/bridgeit/tejaswi/javascript/Utility/dsUtility.js');
+function date(){
+   
+    var year=readlineSync.question("enter the year you want in yyyy")//enter year
+    if(year.length!=4 || isNaN(year)){
+        console.log("invalid input,try again...")
+         var year=readlineSync.question("enter the year you want in yyyy")
     }
-
+         var month=readlineSync.question("enter the month you want in mm")//enter month
+    if(month.length!=2 || isNaN(month) || (month<=0 || month>12)){
+        console.log("invalid input,try again...")
+         var month=readlineSync.question("enter the month you want in mm")
+    }
+    date=year+"/"+month+"/"+"/1";
+    var dateObj=new Date(date);//create date class object with the input date as argument
+    var noOfDays=new Date(dateObj.getFullYear(), dateObj.getMonth()+1, 0).getDate()//invoke getDate() method to get number of days in the month
+    var weekDay=dateObj.getDay();//invoke getDay() method to get the day of the date
+    console.log(noOfDays);
+    console.log(weekDay);
+    utility.printCalendar(noOfDays,weekDay);
 }
 date();
