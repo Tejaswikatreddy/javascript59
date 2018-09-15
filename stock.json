@@ -1,0 +1,19 @@
+{
+    "stock":[
+       {
+            "name":"Cap_Gemini",
+            "price":1000,
+            "shares":2
+       },
+        {
+            "name":"KVR group",
+            "price":500,
+            "shares":4
+        },
+        {
+            "name":"NANA",
+            "price":700,
+            "shares":10
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "rice":[
+       {
+            "name":"basmathi rice",
+            "price":100,
+            "weight":2
+       },
+        {
+            "name":"Brown rice",
+            "price":50,
+            "weight":4
+        }
+    ],
+     "pulses":[
+       {
+            "name":"beanse",
+            "price":100,
+            "weight":1
+       },
+        {
+            "name":"Chick Peas",
+            "price":60,
+            "weight":1
+        }
+    ],
+    "wheat":[
+        {
+        "name":"spelt",
+        "price":100,
+        "weight":1
+        },
+         {
+        "name":"common wheat",
+        "price":50,
+        "weight":1
+        }
+    ]
+  
+}
